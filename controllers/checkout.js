@@ -69,7 +69,9 @@ exports.postSendEmail = (req, res, next) => {
     const product = result.map((item) => {
       return {
         name: item.product.name,
-        img1: item.product.img1,
+        img1: item.product.img1.includes("funix")
+          ? item.product.img1
+          : "https://deploy-nodejs-dxzf.onrender.com/" + item.product.img1,
         price: convertMoney(item.product.price) + " VND",
         count: item.count,
         total: convertMoney(item.product.price * item.count) + " VND",
